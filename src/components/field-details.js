@@ -1,4 +1,5 @@
 import React from 'react';
+import Tags from './tags';
 
 const FieldDetails = (props) => {
     let optionInput;
@@ -53,6 +54,7 @@ const FieldDetails = (props) => {
                 <label>{props.label}</label><br />
                 {result}
             </div>
+            <Tags />
         </div>
     );
 };
