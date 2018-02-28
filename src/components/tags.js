@@ -1,26 +1,37 @@
 import React from 'react';
 import tags from './tag-list';
+import { connect } from 'react-redux';
+import { setTagGroup, setTag } from '../actions';
+
+function mapStateToProps(state) {
+  return {
+    selectedTagGroup: state.selectedTagGroup,
+  };
+}
 
 class Tags extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            selectedTag: '',
-        };
-        this.tagChange = this.tagChange.bind(this);
+
+        this.setTagGroup = this.setTagGroup.bind(this);
+        this.setTag = this.setTag.bind(this);
     }
-    tagChange(e) {
-        this.setState({ selectedTag: e.currentTarget.id });
+
+    setTagGroup(e) {
+      this.props.dispatch(setTagGroup(e.currentTarget.id));
+    }
+    setTag(e) {
+      this.props.dispatch(setTag(e.currentTarget.id));
     }
 
     render() {
         let subTags;
-        const tagGroups = tags.map(tag => <li onClick={this.tagChange} id={tag.name} key={tag.name}>{tag.name}</li>);
-        if (this.state.selectedTag === '') {
+        const tagGroups = tags.map(tag => <li onClick={this.setTagGroup} id={tag.name} key={tag.name}>{tag.name}</li>);
+        if (this.props.selectedTagGroup === '') {
             subTags = <p>Select a tag group to see individual tags</p>;
         } else {
-           const group = tags.filter(tag => tag.name === this.state.selectedTag);
-           const singleTag = group[0].subtag.map(tag => <li id={tag} key={tag}>{tag}</li>);
+           const group = tags.filter(tag => tag.name === this.props.selectedTagGroup);
+           const singleTag = group[0].subtag.map(tag => <li onClick={this.setTag} id={tag} key={tag}>{tag}</li>);
            subTags = (<ul>
                         {singleTag}
                       </ul>);
@@ -45,4 +56,4 @@ class Tags extends React.Component {
     }
 }
 
-export default Tags;
+export default connect(mapStateToProps)(Tags);
