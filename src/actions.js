@@ -54,5 +54,12 @@ export const toggleModal = () => ({
 export const CREATE_GROUP = 'CREATE_GROUP';
 export const createGroup = (groupName) => ({
     type: CREATE_GROUP,
-    groupName
+    groupName,
+});
+
+export const ADD_INPUT = 'ADD_INPUT';
+export const addInput = (groupName, input) => ({
+    type: ADD_INPUT,
+    groupName,
+    input,
 });

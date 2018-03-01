@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {toggleModal} from '../actions';
+import {toggleModal, addInput} from '../actions';
 
 function mapStateToProps(state) {
   return {
@@ -13,15 +13,18 @@ class FieldGroups extends React.Component {
     e.preventDefault();
     this.props.dispatch(toggleModal());
   }
+  addInput(e, result) {
+    this.props.dispatch(addInput(e.currentTarget.id, result))
+  }
   render() {
     let grouplist = this.props.groups.map(group => {
-      return <li className="field groups" key={group.name}>
+      return (<li onClick={e => this.addInput(e, this.props.result)} className="field groups" id={group.name} key={group.name}>
                 <div className="single-group">
                   <h3>{group.name}</h3>
                   <p>{group.inputs.length} other inputs</p>
                 </div>
-              </li>
-    })
+              </li>);
+    });
     return (
       <div className="field-groups">
         <h3>Field Groups</h3>
@@ -37,6 +40,6 @@ class FieldGroups extends React.Component {
       </div>
     );
   }
-};
+}
 
 export default connect(mapStateToProps)(FieldGroups);

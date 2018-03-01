@@ -8,7 +8,8 @@ import {
     SET_VALIDATION,
     SET_OPTIONS,
     TOGGLE_MODAL,
-    CREATE_GROUP
+    CREATE_GROUP,
+    ADD_INPUT,
 } from './actions';
 
 
@@ -92,6 +93,29 @@ const reducer = (state = initialState, action) => {
         state = Object.assign({}, state, {
             groups: [...state.groups, newGroup],
             showModal: false
+        });
+        return state;
+    }
+    if (action.type === ADD_INPUT) {
+        const updatedGroups = [...state.groups]
+        for(let i in updatedGroups) {
+            if (updatedGroups[i].name === action.groupName) {
+                updatedGroups[i].inputs.push(action.input)
+                break;
+            }
+        }
+        state = Object.assign({}, state, {
+            groups: updatedGroups,
+            selectedTagGroup: '',
+            selectedTag: '',
+            filter: '',
+            type: '',
+            label: '',
+            placeholder: '',
+            validation: '',
+            ref: '',
+            options: [],
+            selectedOption: '',
         });
         return state;
     }
