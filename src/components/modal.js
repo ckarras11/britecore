@@ -12,7 +12,12 @@ export class Modal extends React.Component {
     createGroup(e) {
         e.preventDefault();
         const groupName = e.currentTarget.children[1].value
-        this.props.dispatch(createGroup(groupName));
+        if (groupName === '') {
+            alert('Please enter a group name')
+        } else {
+            this.props.dispatch(createGroup(groupName));
+        }
+        
     }
     render() {
         return (
