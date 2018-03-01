@@ -49,6 +49,7 @@ class FieldDetails extends React.Component{
         let optionInput;
         let result;
         let options;
+        // When a user enters options either the radio input or select input (based on user choice) is updated to display the current options
         if (this.props.options) {
             options = this.props.options.map((option, index) => {
                 if (this.props.type === 'select') {
@@ -58,12 +59,14 @@ class FieldDetails extends React.Component{
                 }
             })
         }
+        // If user selects a radio input or a select input another input box is displayed so the user can enter different options seperated by ', '
         if (this.props.type === 'select' || this.props.type === 'radio') {
             optionInput = <div>
                             <label htmlFor='options'>Options seperated by ,</label>
                             <input onChange={this.setOptions} type="text" value={this.props.options.join(', ')} name="options" placeholder="option1, option2, etc.." />
                         </div>
         }
+        // The input chosen by the user is displayed under the form
         if (this.props.type) {
             if (this.props.type === 'radio') {
                 result = <div>{options}</div>
