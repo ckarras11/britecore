@@ -6,6 +6,7 @@ import { setTagGroup, setTag } from '../actions';
 function mapStateToProps(state) {
   return {
     selectedTagGroup: state.selectedTagGroup,
+    selectedTag: state.selectedTag,
   };
 }
 
@@ -26,12 +27,12 @@ class Tags extends React.Component {
 
     render() {
         let subTags;
-        const tagGroups = tags.map(tag => <li onClick={this.setTagGroup} id={tag.name} key={tag.name}>{tag.name}</li>); // Iterates through tag groups and renders tag group name
+        const tagGroups = tags.map(tag => <li className={this.props.selectedTagGroup === tag.name ? "active" : ""} onClick={this.setTagGroup} id={tag.name} key={tag.name}>{tag.name}</li>); // Iterates through tag groups and renders tag group name
         if (this.props.selectedTagGroup === '') {
             subTags = <p>Select a tag group to see individual tags</p>;
         } else {
            const group = tags.filter(tag => tag.name === this.props.selectedTagGroup); // Filters Tag Groups to selected tag group and then maps subtags to list items
-           const singleTags = group[0].subtag.map(tag => <li onClick={this.setTag} id={tag} key={tag}>{tag}</li>);
+           const singleTags = group[0].subtag.map(tag => <li className={this.props.selectedTag === tag ? "active" : ""} onClick={this.setTag} id={tag} key={tag}>{tag}</li>);
            subTags = (<ul>
                         {singleTags}
                       </ul>);

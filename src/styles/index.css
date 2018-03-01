@@ -154,6 +154,9 @@ h1 {
         cursor: pointer;
         background-color: #007389;
         color: white; }
+      .tag-container div ul .active {
+        background-color: #007389;
+        color: white; }
 
 .field-container {
   width: 25%;
