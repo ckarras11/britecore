@@ -11,9 +11,9 @@ function mapStateToProps(state) {
 }
 
 const App = (props) => {
-  let modal
-  if(props.showModal) {
-    modal = <Modal />
+  let modal;
+  if (props.showModal) {
+    modal = <Modal />;
   }
   return (
     <div className="App">
@@ -22,7 +22,7 @@ const App = (props) => {
       <MainCard />
       {modal}
     </div>
-  )
+  );
 };
 
 export default connect(mapStateToProps)(App);
