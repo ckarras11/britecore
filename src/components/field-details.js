@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Tags from './tags';
 import FieldGroups from './field-groups';
-import {setLabel, setPlaceholder, setValidation, setOptions} from '../actions';
+import {setLabel, setPlaceholder, setValidation, setOptions, handleRadio} from '../actions';
 
 function mapStateToProps(state) {
     return {
@@ -12,7 +12,8 @@ function mapStateToProps(state) {
         type: state.type,
         iref: state.ref,
         selectedTag: state.selectedTag,
-        validation: state.validation
+        validation: state.validation,
+        selectedOption: state.selectedOption
     };
 }
 
@@ -24,20 +25,25 @@ class FieldDetails extends React.Component{
         this.setPlaceholder = this.setPlaceholder.bind(this);
         this.setValidation = this.setValidation.bind(this);
         this.setOptions = this.setOptions.bind(this);
+        this.handleRadio = this.handleRadio.bind(this);
 
     }
     setLabel(e) {
-        this.props.dispatch(setLabel(e.currentTarget.value))
+        this.props.dispatch(setLabel(e.currentTarget.value));
     }
     setPlaceholder(e) {
-        this.props.dispatch(setPlaceholder(e.currentTarget.value))
+        this.props.dispatch(setPlaceholder(e.currentTarget.value));
     }
     setValidation(e) {
-        this.props.dispatch(setValidation(e.currentTarget.value))
+        this.props.dispatch(setValidation(e.currentTarget.value));
     }
     setOptions(e) {
         const options = e.currentTarget.value.split(', ');
-        this.props.dispatch(setOptions(options))        
+        this.props.dispatch(setOptions(options));      
+    }
+    handleRadio(e) {
+        e.preventDefault();
+        this.props.dispatch(handleRadio(e.currentTarget.value));
     }
     render () {
         let optionInput;
@@ -48,7 +54,7 @@ class FieldDetails extends React.Component{
                 if (this.props.type === 'select') {
                     return <option key={index} value='option'>{option}</option>
                 } else if (this.props.type === 'radio') {
-                    return <label key={index}><input type='radio' data-tag={this.props.selectedTag} value={option} checked={this.props.selectedOption === { option }} />{option}</label>
+                    return <label key={index}><input type='radio' onChange={this.handleRadio} data-tag={this.props.selectedTag} value={option} checked={this.props.selectedOption === option} />{option}</label>
                 }
             })
         }

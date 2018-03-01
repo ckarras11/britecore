@@ -10,6 +10,7 @@ import {
     TOGGLE_MODAL,
     CREATE_GROUP,
     ADD_INPUT,
+    HANDLE_RADIO,
 } from './actions';
 
 
@@ -76,6 +77,7 @@ const reducer = (state = initialState, action) => {
     if (action.type === SET_OPTIONS) {
         state = Object.assign({}, state, {
             options: action.options,
+            selectedOption: action.options[0],
         });
         return state;
     }
@@ -116,6 +118,12 @@ const reducer = (state = initialState, action) => {
             ref: '',
             options: [],
             selectedOption: '',
+        });
+        return state;
+    }
+    if (action.type === HANDLE_RADIO) {
+        state = Object.assign({}, state, {
+            selectedOption: action.option,
         });
         return state;
     }
