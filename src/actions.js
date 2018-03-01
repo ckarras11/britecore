@@ -52,7 +52,7 @@ export const toggleModal = () => ({
 });
 
 export const CREATE_GROUP = 'CREATE_GROUP';
-export const createGroup = (groupName) => ({
+export const createGroup = groupName => ({
     type: CREATE_GROUP,
     groupName,
 });
@@ -62,4 +62,10 @@ export const addInput = (groupName, input) => ({
     type: ADD_INPUT,
     groupName,
     input,
+});
+
+export const HANDLE_RADIO = 'HANDLE_RADIO';
+export const handleRadio = option => ({
+    type: HANDLE_RADIO,
+    option,
 });
