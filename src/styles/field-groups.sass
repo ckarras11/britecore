@@ -1,7 +1,9 @@
 .field-groups
     width: 25%
     height: 75%
-    border: solid black 1px
+    border: solid $outline 1px
+    border-radius: 3px
+    background-color: $ltBlue
     margin-right: 30px
     position: relative
     display: flex
@@ -19,19 +21,31 @@
         font-size: 10px
         margin-top: 0
         padding-top: 0
+    ul
+        width: 100%
+        list-style: none
+        padding: 0
+        margin-top: 0
     .button-container
         bottom: 0
         position: absolute
         margin-bottom: 10px
         width: 100%
         text-align: center
-        button
-            width: 95%
-            padding: 5px
-            border: solid $outline 1px
-            border-radius: 3px
-            outline: none
-        button:hover
-            cursor: pointer
-            background-color: $blue
-            color: white
+.list-container
+    width: 100%
+.single-group
+    h3, p
+        padding: 0
+    h3
+        font-size: 12px
+.button
+    width: 95%
+    padding: 5px
+    border: solid $outline 1px
+    border-radius: 3px
+    outline: none
+.button:hover
+    cursor: pointer
+    background-color: $blue
+    color: white
