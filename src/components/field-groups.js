@@ -15,7 +15,7 @@ class FieldGroups extends React.Component {
   }
   render() {
     let grouplist = this.props.groups.map(group => {
-      return <li className="field" key={group.name}>
+      return <li className="field groups" key={group.name}>
                 <div className="single-group">
                   <h3>{group.name}</h3>
                   <p>{group.inputs.length} other inputs</p>

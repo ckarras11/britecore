@@ -259,6 +259,9 @@ h1 {
 .list-container {
   width: 100%; }
 
+.groups {
+  width: 95%; }
+
 .single-group h3, .single-group p {
   padding: 0; }
 
