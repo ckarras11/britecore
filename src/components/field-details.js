@@ -73,14 +73,17 @@ class FieldDetails extends React.Component{
                     <div className='column1'>
                         <label htmlFor='label'>Display Label</label>
                         <input onChange={this.setLabel} type='text' name='label' />
+                        <p>For display purposes, spaces allowed</p>
                         <label htmlFor='placeholder'>Placeholder</label>
                         <input onChange={this.setPlaceholder} type="text" name='placeholder' />
                         <label htmlFor='validation'>Custom Validation</label>
                         <input onChange={this.setValidation} type="text" name='validation' />
+                        <p>Any regex pattern can be used for custom input validation</p>
                     </div>
                     <div className='column2'>
                         <label htmlFor='ref'>Reference Name</label>
                         <input type="text" name='ref' value={this.props.iref} />
+                        <p>Used to reference in calculations, no spaces allowed</p>
                         {optionInput}
                     </div>
                 </form>
