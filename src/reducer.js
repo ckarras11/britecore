@@ -88,21 +88,21 @@ const reducer = (state = initialState, action) => {
         return state;
     }
     if (action.type === CREATE_GROUP) {
-        let newGroup = {
+        const newGroup = {
             name: action.groupName,
-            inputs: []
-        }
+            inputs: [],
+        };
         state = Object.assign({}, state, {
             groups: [...state.groups, newGroup],
-            showModal: false
+            showModal: false,
         });
         return state;
     }
     if (action.type === ADD_INPUT) {
-        const updatedGroups = [...state.groups]
-        for(let i in updatedGroups) {
+        const updatedGroups = [...state.groups];
+        for (const i in updatedGroups) {
             if (updatedGroups[i].name === action.groupName) {
-                updatedGroups[i].inputs.push(action.input)
+                updatedGroups[i].inputs.push(action.input);
                 break;
             }
         }
