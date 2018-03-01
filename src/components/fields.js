@@ -35,7 +35,7 @@ class Fields extends React.Component {
           <div className="field-container">
             <h2>Field Types</h2>
             <label className="filter-label" htmlFor="filter">Filter Types</label>
-            <input onChange={e => this.handleFilter(e)}className="filter-input" type="text" name="filter" />
+            <input onChange={e => this.handleFilter(e)}className="filter-input" value={this.props.filter} type="text" name="filter" />
             <ul>
               {fieldItems}
             </ul>

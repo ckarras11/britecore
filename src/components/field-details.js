@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Tags from './tags';
+import FieldGroups from './field-groups';
 import {setLabel, setPlaceholder, setValidation, setOptions} from '../actions';
 
 function mapStateToProps(state) {
@@ -10,6 +11,8 @@ function mapStateToProps(state) {
         label: state.label,
         type: state.type,
         iref: state.ref,
+        selectedTag: state.selectedTag,
+        validation: state.validation
     };
 }
 
@@ -45,39 +48,40 @@ class FieldDetails extends React.Component{
                 if (this.props.type === 'select') {
                     return <option key={index} value='option'>{option}</option>
                 } else if (this.props.type === 'radio') {
-                    return <label key={index}><input type='radio' value={option} checked={this.props.selectedOption === { option }} />{option}</label>
+                    return <label key={index}><input type='radio' data-tag={this.props.selectedTag} value={option} checked={this.props.selectedOption === { option }} />{option}</label>
                 }
             })
         }
         if (this.props.type === 'select' || this.props.type === 'radio') {
             optionInput = <div>
                             <label htmlFor='options'>Options seperated by ,</label>
-                            <input onChange={this.setOptions} type="text" name="options" placeholder="option1, option2, etc.." />
+                            <input onChange={this.setOptions} type="text" value={this.props.options.join(', ')} name="options" placeholder="option1, option2, etc.." />
                         </div>
         }
         if (this.props.type) {
             if (this.props.type === 'radio') {
                 result = <div>{options}</div>
             } else if (this.props.type === 'select') {
-                result = <select>
+                result = <select id={this.props.iref} data-tag={this.props.selectedTag}>
                             {options}
                         </select>
             } else {
-                result = <input type={this.props.type} placeholder={this.props.placeholder} />
+                result = <input type={this.props.type} id={this.props.iref} data-tag={this.props.selectedTag} placeholder={this.props.placeholder} />
             }
         }
         return (
             <div className='field-details'>
+                <div className="form-container">
                 <h2>Field Details</h2>
                 <form className='form'>
                     <div className='column1'>
                         <label htmlFor='label'>Display Label</label>
-                        <input onChange={this.setLabel} type='text' name='label' />
+                        <input onChange={this.setLabel} value={this.props.label} type='text' name='label' />
                         <p>For display purposes, spaces allowed</p>
                         <label htmlFor='placeholder'>Placeholder</label>
-                        <input onChange={this.setPlaceholder} type="text" name='placeholder' />
+                        <input onChange={this.setPlaceholder} value={this.props.placeholder} type="text" name='placeholder' />
                         <label htmlFor='validation'>Custom Validation</label>
-                        <input onChange={this.setValidation} type="text" name='validation' />
+                        <input onChange={this.setValidation} value={this.props.validation} type="text" name='validation' />
                         <p>Any regex pattern can be used for custom input validation</p>
                     </div>
                     <div className='column2'>
@@ -93,6 +97,10 @@ class FieldDetails extends React.Component{
                     {result}
                 </div>
                 <Tags />
+                </div>
+                <div className="field-group-container">
+                    <FieldGroups result={result}/>
+                </div>
             </div>
         );
     }
