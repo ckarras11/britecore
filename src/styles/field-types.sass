@@ -1,0 +1,46 @@
+.field-container
+    width: 25%
+    height: 100%
+    background-color: $ltBlue
+    display: flex
+    align-items: center
+    overflow: auto
+    flex-direction: column
+    ul
+        width: 100%
+        list-style: none
+        padding: 0
+        margin-top: 0
+.filter-label, .filter-input
+    width: 75%
+    margin-bottom: 0
+.filter-input
+    margin-bottom: 10px
+    margin-top: 10px
+    padding: 5px
+    border: solid $outline 1px
+    border-radius: 3px
+    outline: none
+.filter-input:focus
+    border: solid $blue 1px
+.field
+    background-color: white
+    padding: 10px
+    width: 75%
+    margin: 20px auto
+    border: solid $outline 1px
+    border-radius: 3px
+    p, h2, h3 
+        margin: 0
+    h2
+        font-size: 16px
+    h3
+        font-size: 10px
+        margin-top: 10px
+    p
+        font-size: 12px
+
+.field:hover
+    cursor: pointer
+    background-color: $blue
+    color: white
