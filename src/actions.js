@@ -46,3 +46,13 @@ export const setOptions = options => ({
     options,
 });
 
+export const TOGGLE_MODAL = 'TOGGLE_MODAL';
+export const toggleModal = () => ({
+    type: TOGGLE_MODAL,
+});
+
+export const CREATE_GROUP = 'CREATE_GROUP';
+export const createGroup = (groupName) => ({
+    type: CREATE_GROUP,
+    groupName
+});
